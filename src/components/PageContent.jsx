@@ -1,14 +1,23 @@
 import React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 const PageContent = () => {
   return (
     <Grid container spacing={2} m={2}>
       <Grid xs={12} sm={6}>
-        <Typography variant="h5" gutterBottom>
-          JSON
-        </Typography>
+        <Box
+          sx={{
+            m: 1,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography variant="h5">JSON</Typography>
+          <Button variant="outlined" size="small">
+            Sample JSON
+          </Button>
+        </Box>
         <TextField
           fullWidth
           multiline
@@ -19,9 +28,9 @@ const PageContent = () => {
         />
       </Grid>
       <Grid xs={12} sm={6}>
-        <Typography variant="h5" gutterBottom>
-          CSV
-        </Typography>
+        <Box m={1}>
+          <Typography variant="h5">CSV</Typography>
+        </Box>
         <TextField
           fullWidth
           id="filled-basic"
