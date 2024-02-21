@@ -36,7 +36,7 @@ allows the user to paste JSON into a text box to generate its equivalent CSV.
 ## Bonus features
 
 - [ ] User can enter the path to the JSON file on the local file system in a text box
-- [ ] User can click a 'Open' button to load file containing the JSON into the text box
+- [x] User can click a 'Open' button to load file containing the JSON into the text box
 - [ ] User can see a warning message if the JSON file is not found
 - [ ] User can enter the path the CSV file is to be saved to in a text box
 - [ ] User can click a 'Save' button to save the CSV file to the local file system

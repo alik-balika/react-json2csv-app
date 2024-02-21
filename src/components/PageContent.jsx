@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import convertJSONtoCSV from "../converter";
+
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
 
 const PageContent = () => {
   const [JSONText, setJSONText] = useState("");
@@ -53,6 +65,20 @@ const PageContent = () => {
   {"Id":1,"UserName":"Zachary Zupers"}
 ]`
     );
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    e.target.value = "";
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target.result;
+      setJSONText(content);
+    };
+    reader.readAsText(file);
   };
 
   return (
@@ -111,6 +137,19 @@ const PageContent = () => {
       <Grid xs={12}>
         <Button variant="contained" fullWidth size="large" onClick={convert}>
           Convert
+        </Button>
+      </Grid>
+      <Grid xs={12}>
+        <Button
+          component="label"
+          role={undefined}
+          variant="contained"
+          fullWidth
+          size="large"
+          tabIndex={-1}
+        >
+          Upload file
+          <VisuallyHiddenInput type="file" onChange={handleFileChange} />
         </Button>
       </Grid>
     </Grid>
