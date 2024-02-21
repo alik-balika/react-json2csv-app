@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { green, purple } from "@mui/material/colors";
 import PageHeader from "./components/PageHeader";
+import PageContent from "./components/PageContent";
 
 let theme = responsiveFontSizes(
   createTheme({
@@ -26,6 +27,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <PageHeader />
+      <PageContent />
     </ThemeProvider>
   );
 };
