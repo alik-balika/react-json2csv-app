@@ -67,6 +67,21 @@ const PageContent = () => {
     );
   };
 
+  const saveCSVFile = () => {
+    try {
+      const blob = new Blob([CSVText], { type: "text/csv" });
+
+      const anchor = document.createElement("a");
+      anchor.href = window.URL.createObjectURL(blob);
+      anchor.download = "data.csv";
+      anchor.click();
+
+      window.URL.revokeObjectURL(anchor.href);
+    } catch (error) {
+      alert("An error occurred during the file download. Please try again.");
+    }
+  };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -110,8 +125,19 @@ const PageContent = () => {
         />
       </Grid>
       <Grid xs={12} sm={6}>
-        <Box my={1}>
+        <Box
+          sx={{
+            my: 1,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <Typography variant="h5">CSV</Typography>
+          {CSVText && (
+            <Button variant="outlined" size="small" onClick={saveCSVFile}>
+              Save CSV File
+            </Button>
+          )}
         </Box>
         <TextField
           fullWidth
@@ -148,7 +174,7 @@ const PageContent = () => {
           size="large"
           tabIndex={-1}
         >
-          Upload file
+          Upload JSON file
           <VisuallyHiddenInput type="file" onChange={handleFileChange} />
         </Button>
       </Grid>
